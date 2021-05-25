@@ -3,9 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const { sequelize } = require('./models/index');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync({ force: true });
+    console.log('Connection to the database successful!');
+  } catch (error) {
+    console.log('Error connecting to the database: ', error);
+  }
+})();
 
 var app = express();
 
