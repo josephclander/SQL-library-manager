@@ -11,7 +11,7 @@ var usersRouter = require('./routes/users');
 (async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ force: true });
+    await sequelize.sync();
     console.log('Connection to the database successful!');
   } catch (error) {
     console.log('Error connecting to the database: ', error);
@@ -35,7 +35,7 @@ app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+  next(createError(404, 'This page is not found'));
 });
 
 // error handler
@@ -46,7 +46,11 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  if (err.status === 404) {
+    res.render('page-not-found');
+  } else {
+    res.render('error');
+  }
 });
 
 module.exports = app;
