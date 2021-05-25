@@ -43,6 +43,10 @@ app.use(function (req, res, next) {
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
+  // add generic server message if none present
+  if (!err.message) {
+    err.message = 'Sorry! There was an unexpected error on the server.';
+  }
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
@@ -51,7 +55,7 @@ app.use(function (err, req, res, next) {
   if (err.status === 404) {
     res.render('page-not-found', { err: err.message });
   } else {
-    res.render('error');
+    res.render('error', { err });
   }
 });
 

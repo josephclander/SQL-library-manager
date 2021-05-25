@@ -17,6 +17,9 @@ function asyncHandler(cb) {
 /* GET home page. */
 router.get(
   '/',
+  // () => {
+  //   throw new Error();
+  // }
   asyncHandler(async (req, res) => {
     const books = await Book.findAll();
     console.log(books);
