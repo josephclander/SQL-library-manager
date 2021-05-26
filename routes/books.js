@@ -23,4 +23,9 @@ router.get(
   })
 );
 
+/* Create a new book form. */
+router.get('/new', (req, res) => {
+  res.render('books/new-book', { book: {}, title: 'New Book' });
+});
+
 module.exports = router;
