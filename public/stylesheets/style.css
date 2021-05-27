@@ -110,11 +110,13 @@ input[type='text'] {
   background-color: var(--red-warning-hover);
 }
 
-.cancel {
+.cancel,
+.return {
   background-color: var(--grey-event);
 }
 
-.cancel:hover {
+.cancel:hover,
+.return:hover {
   background-color: var(--grey-event-hover);
 }
 
