@@ -28,7 +28,7 @@ router.get(
 /* GET books from search listing. */
 router.get(
   '/search',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const query = req.query.query;
     const books = await Book.findAll({
       where: {
@@ -40,7 +40,7 @@ router.get(
         ],
       },
     });
-    if (books) {
+    if (books.length > 0) {
       res.render('books/index', { books, title: 'Books', query });
     } else {
       next(createError(404, 'Sorry! That search returns no results'));
