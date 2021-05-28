@@ -14,7 +14,12 @@ In this project, you will build a web application that will include pages to lis
 
 ## Running the App
 
-[tbc]
+- Download the files
+- `npm install`
+- `npm start`
+- Go to `localhost:3000`
+
+The library is already pre-populated.
 
 ## Instructions
 
