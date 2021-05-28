@@ -60,7 +60,7 @@ router.get('/new', (req, res) => {
 
 /* POST create book */
 router.post(
-  '/',
+  '/new',
   asyncHandler(async (req, res) => {
     let book;
     try {
