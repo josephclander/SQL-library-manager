@@ -20,8 +20,13 @@ function asyncHandler(cb) {
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const books = await Book.findAll();
-    res.render('books/index', { books, title: 'Books' });
+    const page = parseInt(req.query.page) || 1;
+    const { count, rows: books } = await Book.findAndCountAll({
+      limit: 5,
+      offset: page * 5 - 5,
+    });
+    const totalPages = Math.ceil(count / 5);
+    res.render('books/index', { books, title: 'Books', page, totalPages });
   })
 );
 

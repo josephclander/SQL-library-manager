@@ -28,3 +28,17 @@ block content
           td= book.author 
           td= book.genre 
           td= book.year 
+  br
+  if (totalPages)
+    ul.pagination 
+      li &laquo;
+      - var n = 1;
+      while n < `${totalPages + 1}`
+        li
+          if n == page
+            a(class="active" href=`/books?page=${n}`)= n
+          else 
+            a(href=`/books?page=${n}`)= n
+        - ++n
+      li &raquo;
+    
