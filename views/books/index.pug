@@ -4,6 +4,15 @@ block content
   h1= title
   p
     a(class='button create' href='/books/new') Create New Book
+  br
+  form(class="form__search" action="/books/search" method="get")
+    label(class="query" for="query") Search
+    input(name="query" type="text" value=query id="query")
+    input(class="search" type="submit" value='Search')
+  a(class='button return clear' href='/books') Clear
+  
+  if(query)
+    h3 Results for #{query}
   table 
     thead 
       tr 

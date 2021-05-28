@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { Book } = require('../models');
 var createError = require('http-errors');
+const { Op } = require('sequelize');
 
 /* Handler function to wrap each route. */
 function asyncHandler(cb) {
@@ -21,6 +22,29 @@ router.get(
   asyncHandler(async (req, res) => {
     const books = await Book.findAll();
     res.render('books/index', { books, title: 'Books' });
+  })
+);
+
+/* GET books from search listing. */
+router.get(
+  '/search',
+  asyncHandler(async (req, res) => {
+    const query = req.query.query;
+    const books = await Book.findAll({
+      where: {
+        [Op.or]: [
+          { title: { [Op.substring]: query } },
+          { author: { [Op.substring]: query } },
+          { genre: { [Op.substring]: query } },
+          { year: { [Op.eq]: query } },
+        ],
+      },
+    });
+    if (books) {
+      res.render('books/index', { books, title: 'Books', query });
+    } else {
+      next(createError(404, 'Sorry! That search returns no results'));
+    }
   })
 );
 

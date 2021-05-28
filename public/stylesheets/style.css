@@ -98,6 +98,10 @@ input[type='text'] {
   width: 300px;
 }
 
+/****************************************************
+Button Color Styling
+****************************************************/
+
 .error {
   color: var(--red-warning);
 }
@@ -121,11 +125,31 @@ input[type='text'] {
 }
 
 .update,
-.create {
+.create,
+.search {
   background: var(--green-success);
 }
 
 .update:hover,
-.create:hover {
+.create:hover,
+.search:hover {
   background: var(--green-success-hover);
+}
+
+/****************************************************
+Overides
+****************************************************/
+
+.form__search {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+form .search,
+.clear {
+  margin-left: 5px;
+}
+
+label.query {
+  min-width: 0;
 }
