@@ -1,4 +1,4 @@
-# SQL Library Manager - Team Treehouse Project
+# SQL & Express - Library Manager
 
 In this assignment from TeamTreehouse, you have been tasked with creating an application for your local library to help them manage their collection of books. The librarian has been using a simple SQLite database and has been entering data manually. The application you create should provide a more intuitive way to manage the library's collection of books.
 
